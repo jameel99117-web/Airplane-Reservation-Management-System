@@ -4,18 +4,22 @@ const app = require('../backend/app');
 const database = require('../backend/config/database');
 const SetupService = require('../backend/services/SetupService');
 
-let handler;
-let initialized = false;
+let handlerPromise;
 
-async function ensureInitialized() {
-  if (!initialized) {
-    const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/airline_reservation';
-    await database.connect(uri);
-    await SetupService.initializeApplication();
-    handler = serverless(app);
-    initialized = true;
+function ensureInitialized() {
+  if (!handlerPromise) {
+    handlerPromise = (async () => {
+      const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/airline_reservation';
+      await database.connect(uri);
+      await SetupService.initializeApplication();
+      return serverless(app);
+    })().catch((err) => {
+      // reset so the next request can retry instead of being stuck on a failed promise forever
+      handlerPromise = null;
+      throw err;
+    });
   }
-  return handler;
+  return handlerPromise;
 }
 
 module.exports = async (req, res) => {
