@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyBook Airlines — Book Your Journey</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="https://picsum.photos/id/1036/1920/1080">
+</head>
+<body>
+  <header class="navbar"></header>
+
+  <section class="hero">
+    <img
+      class="hero-bg visual-img"
+      src="https://images.unsplash.com/photo-1436491865339-9a61bfe4060a?auto=format&fit=crop&w=1920&q=75"
+      data-fallback="https://picsum.photos/id/1036/1920/1080"
+      data-fallback-step="0"
+      alt=""
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
+    >
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content fade-in">
+      <div class="hero-text">
+        <h1>Book Your Next Journey</h1>
+        <p class="hero-sub">Discover world-class comfort. Search flights, compare fares, and reserve your seat in minutes.</p>
+      </div>
+      <div class="hero-search fade-in-delay">
+        <h2>Search Flights</h2>
+        <div id="alert" class="alert hidden"></div>
+        <form id="landing-search" class="search-bar">
+          <div class="form-group">
+            <label for="source">From</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true"></span>
+              <input type="text" id="source" placeholder="New York" class="input-field">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="destination">To</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true"></span>
+              <input type="text" id="destination" placeholder="Los Angeles" class="input-field">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true"></span>
+              <input type="date" id="date" class="input-field">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-accent">Search Flights</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="page-header reveal">
+      <h2>Available Flights</h2>
+      <p>Browse our latest routes and exclusive fares</p>
+    </div>
+    <div id="landing-results" class="grid grid-2"></div>
+    <div id="landing-empty" class="hidden"></div>
+  </main>
+
+  <section class="container contact-section reveal" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-item card-hover reveal">
+        <span class="icon">📧</span>
+        <div><strong>Email</strong><p class="text-muted">support@skybook.com</p></div>
+      </div>
+      <div class="contact-item card-hover reveal">
+        <span class="icon">📞</span>
+        <div><strong>Phone</strong><p class="text-muted">+1 (800) 555-0199</p></div>
+      </div>
+      <div class="contact-item card-hover reveal">
+        <span class="icon">🕐</span>
+        <div><strong>Support Hours</strong><p class="text-muted">24/7 Global Assistance</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/landing.js"></script>
+</body>
+</html>

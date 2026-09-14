@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operations Manager | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-page">
+  <aside id="dashboard-sidebar" class="dashboard-sidebar"></aside>
+  <div id="dashboard-overlay" class="dashboard-overlay"></div>
+
+  <div class="dashboard-main">
+    <header class="dashboard-topbar">
+      <button type="button" class="dashboard-menu-btn" id="dashboard-menu-btn" aria-label="Open menu">☰</button>
+      <span class="dashboard-topbar-title">Analytics Dashboard</span>
+    </header>
+
+    <div class="dashboard-body">
+      <section class="dash-welcome reveal" id="dash-welcome">
+        <div class="dash-welcome-content">
+          <h1>Welcome back</h1>
+          <p>Operational insights — charts and reports (read-only)</p>
+        </div>
+        <div class="dash-welcome-visual" aria-hidden="true"></div>
+      </section>
+
+      <div class="dash-stats" id="dash-stats"></div>
+
+      <div class="dash-layout">
+        <div class="dash-main-col">
+          <!-- Manager Sub-Tabs -->
+          <nav class="dash-tabs-nav" aria-label="Manager Navigation">
+            <button type="button" class="dash-tab-btn active" data-tab="manager-tab-analytics">📊 System Analytics</button>
+            <button type="button" class="dash-tab-btn" data-tab="manager-tab-routes">✈️ Route & Flight Rankings</button>
+            <button type="button" class="dash-tab-btn" data-tab="manager-tab-occupancy">💺 Seat Occupancy</button>
+            <button type="button" class="dash-tab-btn" data-tab="manager-tab-payments">💳 Financial Audit</button>
+          </nav>
+
+          <!-- Tab 1: System Analytics -->
+          <div id="manager-tab-analytics" class="dash-tab-pane active">
+            <div class="card reveal is-visible">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="margin-bottom:0;">System Performance Report</h3>
+                <p class="report-meta" id="report-meta" style="margin-bottom:0; font-size:0.85rem; color:var(--text-muted);"></p>
+              </div>
+              <div id="performance-charts" class="chart-grid"></div>
+            </div>
+
+            <div class="card reveal is-visible">
+              <h3>Peak Booking Patterns</h3>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:1rem; padding:0.5rem 0;">
+                <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); padding:0.85rem; text-align:center;">
+                  <span style="font-size:0.75rem; color:var(--text-muted); display:block;">PEAK HOUR</span>
+                  <strong id="peak-hour" style="font-size:1.25rem; color:var(--primary);">-</strong>
+                </div>
+                <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); padding:0.85rem; text-align:center;">
+                  <span style="font-size:0.75rem; color:var(--text-muted); display:block;">QUIET HOUR</span>
+                  <strong id="low-hour" style="font-size:1.25rem; color:var(--text-muted);">-</strong>
+                </div>
+                <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); padding:0.85rem; text-align:center;">
+                  <span style="font-size:0.75rem; color:var(--text-muted); display:block;">PEAK DAY</span>
+                  <strong id="peak-day" style="font-size:1.25rem; color:var(--success);">-</strong>
+                </div>
+                <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); padding:0.85rem; text-align:center;">
+                  <span style="font-size:0.75rem; color:var(--text-muted); display:block;">QUIET DAY</span>
+                  <strong id="low-day" style="font-size:1.25rem; color:var(--text-muted);">-</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Routes & Flights -->
+          <div id="manager-tab-routes" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="margin-bottom:0;">Route Performance</h3>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-accent" data-sort-routes="desc">Most Popular</button>
+                  <button type="button" class="btn btn-sm btn-ghost" data-sort-routes="asc">Least Popular</button>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Flight Route</th><th>Total Bookings</th><th>Total Revenue</th></tr></thead>
+                  <tbody id="route-performance-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card reveal is-visible">
+              <h3>Flight Performance Ranking</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Rank</th><th>Flight #</th><th>Route</th><th>Bookings</th><th>Revenue</th><th>Occupancy</th></tr></thead>
+                  <tbody id="flight-ranking-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Occupancy -->
+          <div id="manager-tab-occupancy" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Seat Occupancy per Flight</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>Flight #</th><th>Route</th><th>Booked / Capacity</th><th>Occupancy Rate</th></tr>
+                  </thead>
+                  <tbody id="occupancy-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Payments -->
+          <div id="manager-tab-payments" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                <h3 style="margin-bottom:0;">Payments & Refunds Audit</h3>
+                <select id="payment-filter" class="input-field" style="width: auto; display: inline-block;">
+                  <option value="">All Payment Statuses</option>
+                  <option value="pending">Pending</option>
+                  <option value="success">Paid / Success</option>
+                  <option value="failed">Failed</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Type</th><th>Passenger</th><th>Booking Ref</th><th>Amount</th><th>Status</th></tr></thead>
+                  <tbody id="payments-refunds-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="dash-activity-col">
+          <div class="card dash-activity-card reveal is-visible">
+            <h3>Recent System Activity</h3>
+            <ul class="activity-feed" id="dash-activity-list"></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/dashboard-ui.js"></script>
+  <script src="js/pages/manager-dashboard.js"></script>
+</body>
+</html>

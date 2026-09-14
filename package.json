@@ -1,0 +1,21 @@
+{
+  "name": "airline-reservation-system",
+  "version": "1.0.0",
+  "description": "Airline Reservation Management System with MongoDB and OOP backend",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "seed": "node backend/seed/seedData.js"
+  },
+  "keywords": ["airline", "reservation", "mongodb", "express"],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0"
+  }
+}

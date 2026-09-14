@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="navbar"></header>
+  <section class="page-banner reveal" data-banner-auto data-banner-src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80&auto=format&fit=crop">
+    <div class="page-banner-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-header mb-0">
+        <h1>Secure Payment</h1>
+        <p>Complete your booking with our simulated payment gateway</p>
+      </div>
+    </div>
+  </section>
+  <main class="container fade-in">
+    <div class="search-hint">Card <code>4242</code> = success · <code>0000</code> = fail</div>
+    <div id="alert" class="alert hidden"></div>
+    <div class="card" id="booking-summary"></div>
+    <div class="card">
+      <h3>Payment Details</h3>
+      <form id="payment-form">
+        <div class="form-group">
+          <label for="method">Method</label>
+          <select id="method" class="input-field"><option value="card">Card</option></select>
+        </div>
+        <div class="form-group">
+          <label for="cardLastFour">Last 4 digits</label>
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">💳</span>
+            <input id="cardLastFour" maxlength="4" placeholder="4242" class="input-field" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/payment.js"></script>
+</body>
+</html>

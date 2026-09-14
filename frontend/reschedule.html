@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reschedule Booking | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-booking">
+  <header class="navbar"></header>
+  <section class="page-banner reveal" data-banner-auto data-banner-src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80&auto=format&fit=crop">
+    <div class="page-banner-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-header mb-0">
+        <h1>Reschedule Booking</h1>
+        <p>Select a new flight and seats for your reservation</p>
+      </div>
+    </div>
+  </section>
+  <main class="container fade-in">
+    <div id="alert" class="alert hidden"></div>
+    <div id="loading" class="card loading-card">Loading booking details...</div>
+
+    <div id="reschedule-content" class="hidden">
+      <div class="card" id="current-booking-info"></div>
+
+      <div class="card">
+        <h3>Select New Flight</h3>
+        <div class="form-group">
+          <label for="new-flight-picker">Available Flights</label>
+          <select id="new-flight-picker" class="input-field">
+            <option value="">— Select a flight —</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card hidden" id="new-flight-panel">
+        <h3>New Flight Details</h3>
+        <div id="new-flight-info"></div>
+        <h3 class="mt-1">Select Seats (<span id="required-seats">0</span> required)</h3>
+        <div class="seat-map" id="seat-map"></div>
+        <p class="mt-1"><strong>New Total:</strong> $<span id="new-total-price">0</span></p>
+        <p id="price-difference" class="text-muted hidden" style="font-size:0.9rem"></p>
+        <div class="btn-group mt-1">
+          <button type="button" id="btn-confirm-reschedule" class="btn btn-primary">Confirm Reschedule</button>
+          <a href="#" id="back-link" class="btn btn-ghost btn-sm">Back to Dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-panel" class="card hidden">
+      <h3>Unable to Reschedule</h3>
+      <p id="error-message" class="text-muted"></p>
+      <a href="#" id="error-back-link" class="btn btn-primary mt-1">Back to Dashboard</a>
+    </div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/reschedule.js"></script>
+</body>
+</html>

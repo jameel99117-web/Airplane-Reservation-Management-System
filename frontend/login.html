@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-hero">
+      <div class="overlay"></div>
+      <div class="auth-hero-content fade-in">
+        <h1>Welcome Back</h1>
+        <p>Sign in to manage bookings, select seats, and enjoy priority support.</p>
+      </div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-card fade-in-up">
+        <h1>Sign In</h1>
+        <p class="subtitle">Access your SkyBook account</p>
+        <div id="alert" class="alert hidden"></div>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">✉</span>
+              <input type="email" id="email" class="input-field" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">🔒</span>
+              <input type="password" id="password" class="input-field" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="switch-link">New here? <a href="register.html">Create an account</a> · <a href="index.html">Home</a></p>
+        <div class="search-hint" style="margin-top:1rem;font-size:0.75rem">
+          passenger: john@example.com / user123<br>
+          admin: admin@airline.com / admin123<br>
+          agent: agent@airline.com / agent123<br>
+          manager: manager@airline.com / manager123
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/login.js"></script>
+</body>
+</html>

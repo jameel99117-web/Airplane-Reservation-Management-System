@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Dashboard | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-page">
+  <aside id="dashboard-sidebar" class="dashboard-sidebar"></aside>
+  <div id="dashboard-overlay" class="dashboard-overlay"></div>
+
+  <div class="dashboard-main">
+    <header class="dashboard-topbar">
+      <button type="button" class="dashboard-menu-btn" id="dashboard-menu-btn" aria-label="Open menu">☰</button>
+      <span class="dashboard-topbar-title">Reservation Agent</span>
+    </header>
+
+    <div class="dashboard-body">
+      <section class="dash-welcome reveal" id="dash-welcome">
+        <div class="dash-welcome-content">
+          <h1>Welcome back</h1>
+          <p>Book on behalf of passengers and manage reservations</p>
+        </div>
+        <div class="dash-welcome-visual" aria-hidden="true"></div>
+      </section>
+
+      <div id="alert" class="alert hidden"></div>
+      <div class="dash-stats" id="dash-stats"></div>
+
+      <div class="dash-actions" id="dash-actions"></div>
+
+      <div class="dash-layout">
+        <div class="dash-main-col">
+          <!-- Agent Sub-Tabs -->
+          <nav class="dash-tabs-nav" aria-label="Agent Navigation">
+            <button type="button" class="dash-tab-btn active" data-tab="agent-tab-bookings">📋 Manage Bookings</button>
+            <button type="button" class="dash-tab-btn" data-tab="agent-tab-operations">✈️ Seats & Ticketing</button>
+            <button type="button" class="dash-tab-btn" data-tab="agent-tab-support">💬 Support Desk</button>
+          </nav>
+
+          <!-- Tab 1: Bookings -->
+          <div id="agent-tab-bookings" class="dash-tab-pane active">
+            <div class="card reveal is-visible">
+              <h3>All Passenger Bookings</h3>
+              <div id="bookings-list"></div>
+            </div>
+            <div class="card reveal is-visible">
+              <h3>Modify Passenger Booking</h3>
+              <form id="modify-form">
+                <div class="form-grid-3">
+                  <div class="form-group"><label for="mod-booking-id">Booking ID</label><input id="mod-booking-id" class="input-field" placeholder="Booking reference ID" required></div>
+                  <div class="form-group"><label for="mod-name">Update Passenger Name</label><input id="mod-name" class="input-field" placeholder="Leave blank to keep current"></div>
+                  <div class="form-group"><label for="mod-special">Special Request Notes</label><input id="mod-special" class="input-field" placeholder="e.g. Dietary or seat requests"></div>
+                </div>
+                <div class="btn-group" style="margin-top: 1rem;">
+                  <button type="submit" class="btn btn-primary">Save Booking Updates</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Tab 2: Operations -->
+          <div id="agent-tab-operations" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Check Live Flight Seat Availability</h3>
+              <form id="seat-availability-form">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="flight-id">Select Flight</label>
+                    <select id="flight-id" class="input-field" required>
+                      <option value="">Loading flights...</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="display:flex; align-items:flex-end;">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Check Seat Capacity</button>
+                  </div>
+                </div>
+              </form>
+              <div id="seat-availability-result" class="mt-1"></div>
+            </div>
+
+            <div class="card reveal is-visible">
+              <h3>Issue Official Boarding Ticket</h3>
+              <form id="issue-ticket-form">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="ticket-booking-id">Select Confirmed Booking</label>
+                    <select id="ticket-booking-id" class="input-field" required>
+                      <option value="">Loading bookings...</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="display:flex; align-items:flex-end;">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Issue Passenger Ticket</button>
+                  </div>
+                </div>
+              </form>
+              <div id="ticket-result" class="mt-1"></div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Support -->
+          <div id="agent-tab-support" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Passenger Support Tickets</h3>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Ticket Subject</th><th>Status</th><th>Priority</th><th>Action</th></tr></thead>
+                  <tbody id="support-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="dash-activity-col">
+          <div class="card dash-activity-card reveal is-visible">
+            <h3>Recent System Activity</h3>
+            <ul class="activity-feed" id="dash-activity-list"></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/dashboard-ui.js"></script>
+  <script src="js/pages/agent-dashboard.js"></script>
+</body>
+</html>

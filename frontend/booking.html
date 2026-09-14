@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Flight | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-booking">
+  <header class="navbar"></header>
+  <section class="page-banner reveal" data-banner-auto data-banner-src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=1600&q=80&auto=format&fit=crop">
+    <div class="page-banner-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-header mb-0">
+      <h1>Book Your Flight</h1>
+      <p>Select seats and enter passenger details</p>
+      </div>
+    </div>
+  </section>
+  <main class="container fade-in">
+    <div id="alert" class="alert hidden"></div>
+
+    <div id="agent-select-flight" class="card hidden">
+      <h2>Book on Behalf of Passenger</h2>
+      <p class="text-muted mb-1">Step 1: Select a flight, then choose seats and passenger details.</p>
+      <div class="form-group">
+        <label for="flight-picker">Available Flights</label>
+        <div class="input-wrap">
+          <span class="input-icon" aria-hidden="true">✈</span>
+          <select id="flight-picker" class="input-field">
+            <option value="">— Loading flights —</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" id="btn-continue-flight" class="btn btn-primary">Continue to Seats</button>
+        <a href="dashboard-agent.html" class="btn btn-ghost btn-sm">Back to Agent Dashboard</a>
+      </div>
+    </div>
+
+    <div id="no-flight-msg" class="card hidden">
+      <h3>No flight selected</h3>
+      <p class="text-muted">Please search for a flight first.</p>
+      <a href="flights.html" class="btn btn-primary mt-1">Search Flights</a>
+    </div>
+
+    <div id="loading" class="card loading-card hidden">Loading flight</div>
+    <div id="booking-content" class="hidden">
+      <div class="card" id="flight-info"></div>
+      <div class="card">
+        <h3>Select Seats</h3>
+        <div class="seat-map" id="seat-map"></div>
+        <p class="mt-1"><strong>Subtotal:</strong> $<span id="subtotal-price">0</span></p>
+        <p id="discount-line" class="mt-1 hidden" style="color:var(--accent,#0d9488)"><strong>Discount:</strong> -$<span id="discount-amount">0</span></p>
+        <p class="mt-1"><strong>Total:</strong> $<span id="total-price">0</span></p>
+      </div>
+      <div class="card">
+        <h3>Passenger Details</h3>
+        <div id="passengers-container">
+          <div class="passenger-form" data-passenger-index="0">
+            <h4>Passenger 1</h4>
+            <div id="agent-passenger-wrap" class="form-group hidden">
+              <label for="passenger-user-id">Passenger account</label>
+              <select id="passenger-user-id" class="input-field" required></select>
+              <p class="text-muted" style="font-size:0.85rem;margin-top:0.35rem">Booking will be linked to this passenger.</p>
+            </div>
+            <div class="form-group">
+              <label for="passenger-name">Passenger name</label>
+              <div class="input-wrap">
+                <span class="input-icon" aria-hidden="true">👤</span>
+                <input id="passenger-name" class="input-field passenger-name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="passenger-email">Passenger email</label>
+              <div class="input-wrap">
+                <span class="input-icon" aria-hidden="true">✉</span>
+                <input type="email" id="passenger-email" class="input-field passenger-email" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="add-passenger-btn" class="btn btn-sm btn-secondary mb-1">+ Add Another Passenger</button>
+        <form id="booking-form">
+          <div class="form-group mb-1">
+            <label for="special-request">Special Request / Flight Notes</label>
+            <input id="special-request" class="input-field" placeholder="Optional (e.g. Window seat preference, extra blanket)">
+          </div>
+          
+          <div class="form-group mb-1">
+            <label for="discount-code">Promo Code (Optional)</label>
+            <div style="display:flex;gap:0.5rem;align-items:stretch">
+              <div class="input-wrap" style="flex:1">
+                <span class="input-icon" aria-hidden="true">🏷</span>
+                <input id="discount-code" class="input-field" placeholder="Enter promo code (e.g. SUMMER20)">
+              </div>
+              <button type="button" id="btn-apply-promo" class="btn btn-secondary btn-sm" style="align-self:stretch; white-space:nowrap;">Apply Code</button>
+            </div>
+            <p id="promo-feedback" class="text-muted hidden" style="font-size:0.85rem;margin-top:0.35rem"></p>
+            <p id="promo-discount-line" class="hidden" style="font-size:0.85rem;margin-top:0.35rem;color:var(--accent,#0d9488)"></p>
+          </div>
+
+          <fieldset style="border:1px solid var(--border); border-radius:var(--radius); padding:1rem; margin-bottom:1.25rem;">
+            <legend style="padding:0 0.5rem; font-weight:600; font-size:0.9rem; color:var(--primary);">📞 Emergency Contact (Optional)</legend>
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label for="emergency-contact-name">Contact Full Name</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">👤</span>
+                  <input id="emergency-contact-name" class="input-field" placeholder="e.g. Sarah Smith">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="emergency-contact-relationship">Relationship</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">👥</span>
+                  <input id="emergency-contact-relationship" class="input-field" placeholder="e.g. Spouse / Parent">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="emergency-contact-phone">Contact Phone</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">📱</span>
+                  <input id="emergency-contact-phone" class="input-field" placeholder="+1 (555) 000-0000">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset style="border:1px solid var(--border); border-radius:var(--radius); padding:1rem; margin-bottom:1.25rem;">
+            <legend style="padding:0 0.5rem; font-weight:600; font-size:0.9rem; color:var(--primary);">♿ In-Flight Services & Preferences (Optional)</legend>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="assistance-type">Special Assistance</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">♿</span>
+                  <select id="assistance-type" class="input-field">
+                    <option value="">No assistance needed</option>
+                    <option value="wheelchair">Wheelchair support</option>
+                    <option value="medical">Medical assistance</option>
+                    <option value="elderly">Elderly assistance</option>
+                    <option value="special">Other special assistance</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="assistance-notes">Assistance Notes</label>
+                <input id="assistance-notes" class="input-field" placeholder="Describe assistance needs...">
+              </div>
+              <div class="form-group">
+                <label for="meal-preference">Dietary / Meal Choice</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">🍽</span>
+                  <select id="meal-preference" class="input-field">
+                    <option value="standard">Standard In-Flight Meal</option>
+                    <option value="vegetarian">Vegetarian Meal</option>
+                    <option value="special">Special / Diabetic / Halal / Kosher</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="meal-notes">Special Meal Notes</label>
+                <input id="meal-notes" class="input-field" placeholder="Describe dietary restrictions / allergies...">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Proceed to Secure Payment</button>
+            <button type="button" id="btn-change-flight" class="btn btn-ghost btn-sm hidden">Change Flight</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/pages/booking.js"></script>
+</body>
+</html>

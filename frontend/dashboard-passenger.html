@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Dashboard | SkyBook Airlines</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-page">
+  <aside id="dashboard-sidebar" class="dashboard-sidebar" aria-label="Sidebar"></aside>
+  <div id="dashboard-overlay" class="dashboard-overlay"></div>
+
+  <div class="dashboard-main">
+    <header class="dashboard-topbar">
+      <button type="button" class="dashboard-menu-btn" id="dashboard-menu-btn" aria-label="Open menu">☰</button>
+      <span class="dashboard-topbar-title">Passenger Dashboard</span>
+    </header>
+
+    <div class="dashboard-body">
+      <section class="dash-welcome reveal" id="dash-welcome">
+        <div class="dash-welcome-content">
+          <h1>Welcome back</h1>
+          <p>Manage your trips and reservations</p>
+        </div>
+        <div class="dash-welcome-visual" aria-hidden="true"></div>
+      </section>
+
+      <div class="dash-stats" id="dash-stats"></div>
+
+      <div class="dash-actions" id="dash-actions"></div>
+
+      <div class="dash-layout">
+        <div class="dash-main-col">
+          <!-- Dashboard Sub-Tabs -->
+          <nav class="dash-tabs-nav" aria-label="Passenger Sections">
+            <button type="button" class="dash-tab-btn active" data-tab="tab-bookings">✈️ My Trips & Bookings</button>
+            <button type="button" class="dash-tab-btn" data-tab="tab-loyalty">💎 Loyalty & Rewards</button>
+            <button type="button" class="dash-tab-btn" data-tab="tab-services">🧳 Baggage & Services</button>
+            <button type="button" class="dash-tab-btn" data-tab="tab-notifications">🔔 Notifications & Feedback</button>
+            <button type="button" class="dash-tab-btn" data-tab="tab-profile">👤 Account Profile</button>
+          </nav>
+
+          <!-- Tab 1: Bookings & Trips -->
+          <div id="tab-bookings" class="dash-tab-pane active">
+            <div class="card reveal is-visible">
+              <div class="section-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+                <h3 style="margin-bottom:0;">My Flight Bookings</h3>
+                <a href="flights.html" class="btn btn-sm btn-primary">+ Book New Flight</a>
+              </div>
+              <div id="bookings-list"></div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Loyalty & Rewards -->
+          <div id="tab-loyalty" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Loyalty & Rewards Program</h3>
+              <div id="loyalty-program-section"></div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Baggage & Special Services -->
+          <div id="tab-services" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Baggage Management</h3>
+              <p class="text-muted" style="font-size:0.9rem;margin-bottom:1rem;">Manage baggage allowance, add checked baggage, and view excess fees.</p>
+              <div id="baggage-management-section"></div>
+            </div>
+            <div class="card reveal is-visible">
+              <h3>Special Assistance Requests</h3>
+              <div id="assistance-requests-list"></div>
+            </div>
+            <div class="card reveal is-visible">
+              <h3>Meal Preferences</h3>
+              <div id="meal-preferences-list"></div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Notifications & Feedback -->
+          <div id="tab-notifications" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                <h3 style="margin-bottom:0;">Notifications</h3>
+                <div class="notification-actions">
+                  <button type="button" id="mark-all-read-btn" class="btn btn-sm btn-ghost">Mark All as Read</button>
+                  <button type="button" id="generate-test-notifications-btn" class="btn btn-sm btn-ghost" style="opacity:0.6;font-size:0.75rem;" title="Dev Tool">Generate Test</button>
+                </div>
+              </div>
+              <div id="notifications-list"></div>
+            </div>
+            <div class="card reveal is-visible">
+              <h3>Share Your Feedback</h3>
+              <div id="feedback-form-container" class="mb-1">
+                <form id="feedback-form">
+                  <div class="form-grid-2">
+                    <div class="form-group">
+                      <label for="feedback-booking">Select Booking</label>
+                      <select id="feedback-booking" class="input-field" required>
+                        <option value="">-- Select a booking --</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="feedback-rating">Rating</label>
+                      <select id="feedback-rating" class="input-field" required>
+                        <option value="">-- Select rating --</option>
+                        <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
+                        <option value="4">⭐⭐⭐⭐ 4 - Good</option>
+                        <option value="3">⭐⭐⭐ 3 - Average</option>
+                        <option value="2">⭐⭐ 2 - Poor</option>
+                        <option value="1">⭐ 1 - Very Poor</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="feedback-comment">Comment (Optional)</label>
+                    <textarea id="feedback-comment" class="input-field" rows="3" placeholder="Share details about your flight experience..."></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">Submit Feedback</button>
+                </form>
+              </div>
+              <div id="feedback-list" style="margin-top:1.5rem;"></div>
+            </div>
+          </div>
+
+          <!-- Tab 5: Profile & Account -->
+          <div id="tab-profile" class="dash-tab-pane">
+            <div class="card reveal is-visible">
+              <h3>Account Profile</h3>
+              <div id="profile-section"></div>
+            </div>
+          </div>
+        </div>
+        <aside class="dash-activity-col">
+          <div class="card dash-activity-card reveal is-visible">
+            <h3>Recent Activity</h3>
+            <ul class="activity-feed" id="dash-activity-list"></ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/core/roles-config.js"></script>
+  <script src="js/core/api-client.js"></script>
+  <script src="js/core/session.js"></script>
+  <script src="js/core/icons.js"></script>
+  <script src="js/core/visuals.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/dashboard-ui.js"></script>
+  <script src="js/pages/passenger-dashboard.js"></script>
+</body>
+</html>
