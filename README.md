@@ -28,10 +28,6 @@ A full-stack web application for managing airline reservations, flights, passeng
 
 ![Flight Results](images/flights-results.png)
 
-### ⭐ Passenger Loyalty
-
-![Passenger Loyalty](images/passenger-loyalty.png)
-
 ### Loyalty Program of passenger
 
 ![Agent Dashboard](images/agent-dashboard.png)
