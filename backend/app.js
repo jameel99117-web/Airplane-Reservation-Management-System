@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const healthRoutes = require('./routes/healthRoutes');
@@ -38,7 +37,8 @@ class Application {
     this.#app.use(cors());
     this.#app.use(express.json());
     this.#app.use(express.urlencoded({ extended: true }));
-    this.#app.use(express.static(path.join(__dirname, '../frontend')));
+    // Static frontend serving removed — Vercel's @vercel/static handles it
+    // in production. Local dev serves it from server.js instead.
   }
 
   #configureRoutes() {

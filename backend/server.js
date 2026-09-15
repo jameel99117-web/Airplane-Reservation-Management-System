@@ -1,7 +1,13 @@
 require('dotenv').config();
+const path = require('path');
+const express = require('express');
 const app = require('./app');
 const database = require('./config/database');
 const SetupService = require('./services/SetupService');
+
+// Local-dev-only: serve the frontend, since app.js no longer does this
+// (Vercel's @vercel/static handles it in production instead).
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 const PORT = process.env.PORT || 3000;
 
