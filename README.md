@@ -12,17 +12,19 @@ A full-stack web application for managing airline reservations, flights, passeng
 
 ![Home Page](images/home-page.png)
 
-![Login Page](images/login-page.png)
+![Passenger Loyalty](images/passenger-loyalty.png)
 
-### 👤 Passenger Dashboard
+
+
+### 👤 Admin Dashboard
 
 ![Passenger Dashboard](images/passenger-dashboard.png)
 
 ### 🔎 Flight Search
 
-![Flight Search](images/flights-search.png)
+![Login Page](images/login-page.png)
 
-### ✈️ Flight Results
+### Reservation Agent
 
 ![Flight Results](images/flights-results.png)
 
@@ -30,7 +32,7 @@ A full-stack web application for managing airline reservations, flights, passeng
 
 ![Passenger Loyalty](images/passenger-loyalty.png)
 
-### 👨‍💼 Agent Dashboard
+### Loyalty Program of passenger
 
 ![Agent Dashboard](images/agent-dashboard.png)
 
@@ -38,9 +40,9 @@ A full-stack web application for managing airline reservations, flights, passeng
 
 ![Manager Analytics](images/manager-analytics.png)
 
-### 🛡️ Admin Dashboard
+### 🛡️ Passenger Dashboard
 
-![Admin Dashboard](images/admin-dashboard.png)
+![Flight Search](images/flights-search.png)
 
 ### 📞 Contact & Footer
 
